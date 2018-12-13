@@ -21,7 +21,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '1==ow4tzymi1k)wma3&u=wd4)#4zrt*pup_2(drlb-c92d81wd'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -37,6 +36,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # third party apps
+    'django_extensions',
+    'debug_toolbar',
+
+    # myapps
+    'chilipili',
+
 ]
 
 MIDDLEWARE = [
@@ -75,8 +82,11 @@ WSGI_APPLICATION = 'microblogger.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'chilipili',
+        'USER': 'chilipili',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
@@ -118,3 +128,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+AUTH_USER_MODEL = 'chilipili.User'

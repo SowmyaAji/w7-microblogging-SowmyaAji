@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+
+{% block title %}
+
+    Homepage - {{ block.super }}
+
+{% endblock title %}
+
+{% block content %}
+ 
+
+{% for chilipili in chilipilis %}
+  <h4> <a href="{{ chilipili.author_user }}">{{ chilipili.author_user }}</a></h4>
+
+        {{ chilipili.text | truncatechars: 280 }}
+
+<div>
+ <form action= {% url 'like_chilipili' pk=chilipili.pk %} method="POST">{% csrf_token %}   
+    <button class="btn"><i class="glyphicon glyphicon-thumbs-up"></i></button>
+
+
+ <p>Likes!: {{ chilipili.likes.count }}</p>
+ 
+
+ 
+ </form>
+</div>
+
+
+{% endfor %}
+
+
+
+
+{% show_pages %}
+
+{% endblock content %}
