@@ -12,26 +12,26 @@ class User(AbstractUser):
     )
 
 
-# class Chilipili(models.Model):
-#     author_user = models.ForeignKey(
-#         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="chilipilis")
-#     text = models.TextField(min_length=2, max_length=280)
-#     created_at = models.DateTimeField(auto_now=True)
-#     updated_at = models.DateTimeField(auto_now_add=True)
+class Chilipili(models.Model):
+    author_user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="chilipilis")
+    text = models.TextField(max_length=280)
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
 
 
-# class Like(models.Model):
-#     chilipili = models.ForeignKey(
-#         to="Chilipili", on_delete=models.CASCADE, null=True, related_name="likes")
-#     like_user = models.ForeignKey(
-#         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="likes")
+class Like(models.Model):
+    chilipili = models.ForeignKey(
+        to="Chilipili", on_delete=models.CASCADE, null=True, related_name="likes")
+    like_user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="likes")
 
 
-# class Follow(models.Model):
-#     following_user = models.ForeignKey(
-#         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="follows_from")
-#     followed_user = models.ForeignKey(
-#         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="follows_to")
+class Follow(models.Model):
+    following_user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="follows_from")
+    followed_user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="follows_to")
 
 
 # class Repost(models.Model):
