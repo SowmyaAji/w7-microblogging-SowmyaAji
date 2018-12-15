@@ -15,7 +15,7 @@
 {% for chilipili in chilipilis %}
   <h4> <a href="{{ chilipili.author_user }}">{{ chilipili.author_user }}</a></h4>
 
-        {{ chilipili.text | truncatechars: 280 }}
+        {{ chilipili.text }}
 
 <div>
  <form action= {% url 'like_chilipili' pk=chilipili.pk %} method="POST">{% csrf_token %}   
@@ -35,6 +35,6 @@
 
 
 
-{% show_pages %}
+
 
 {% endblock content %}
