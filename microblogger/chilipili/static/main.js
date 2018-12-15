@@ -1,8 +1,0 @@
-
-
-$('#like-button').on('click', {
-
-
-
-
-})

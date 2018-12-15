@@ -54,7 +54,7 @@ def like_chilipili(request, pk):
 
             return redirect('home')
         if request.is_ajax():
-            return JsonResponse({"chilipili_pk": chilipili.id, "num_of_likes": chilipili.likes.count()})
+            return JsonResponse({"chilipili_pk": chilipili.id, "likes": chilipili.likes.count()})
 
 
 def sort_liked_chilipilis(request, chilipilis):
