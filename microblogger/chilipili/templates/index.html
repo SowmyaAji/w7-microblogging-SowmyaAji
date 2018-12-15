@@ -19,7 +19,7 @@
 
 <div>
  <form action= {% url 'like_chilipili' pk=chilipili.pk %} method="POST">{% csrf_token %}   
-    <button class="btn"><i class="glyphicon glyphicon-thumbs-up"></i></button>
+    <button class="btn" id="like-button"><i class="glyphicon glyphicon-thumbs-up"></i></button>
 
 
  <p>Likes!: {{ chilipili.likes.count }}</p>

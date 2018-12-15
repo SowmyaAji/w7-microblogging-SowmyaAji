@@ -11,6 +11,9 @@ django-debug-toolbar = "*"
 psycopg2 = "*"
 django-extensions = "*"
 djangorestframework = "*"
+werkzeug = "*"
+mimesis = "*"
+django-registration-redux = "*"
 
 [requires]
 python_version = "3.7"
