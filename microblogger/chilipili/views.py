@@ -44,17 +44,11 @@ def index(request):
 
 
 def like_chilipili(request, pk):
-
     chilipili = get_object_or_404(Chilipili, pk=pk)
     if request.method == "POST":
         if not Like.objects.filter(chilipili=chilipili, like_user=request.user):
             Like.objects.create(chilipili=chilipili, like_user=request.user)
-
-        else:
-
-            return redirect('home')
-        if request.is_ajax():
-            return JsonResponse({"chilipili_pk": chilipili.id, "likes": chilipili.likes.count()})
+        return JsonResponse({"chilipili_pk": chilipili.id, "likes": chilipili.likes.count()})
 
 
 def sort_liked_chilipilis(request, chilipilis):
