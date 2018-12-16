@@ -1,6 +1,6 @@
 h1 {
 
-    color: darkmagenta;
+    color: brown;
     font-display: bold;
     font-family: Verdana;
     font-size: 7rem;
@@ -10,11 +10,21 @@ h1 {
 
 .header {
 
-    background-color: beige;
-    padding: 2rem;
-    text-align: center;
+    /* background-color: beige; */
+    /* padding: 2rem; */
+    /* text-align: center; */
+     
     
 }
+
+.header img {
+    float: right;
+    width: 300px;
+    height: 150px;
+    background: beige;
+ 
+  }
+  
 
 a {
 
@@ -23,10 +33,10 @@ a {
 
 }
 
-nav {
+/* nav {
     float: right;
 
-}
+} */
 
 body {
 

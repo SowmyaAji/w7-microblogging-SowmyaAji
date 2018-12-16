@@ -20,15 +20,20 @@
 <div class="chilipili-div" data-url="{% url 'like_chilipili' chilipili.pk %}">
     {% csrf_token %}
     <button class="btn like-button" ><i class="glyphicon glyphicon-thumbs-up"></i></button>
- <p>Likes!: <div class="like-count">{{ chilipili.likes.count }}</div> </p>
+ <p>Likes: <span class="like-count">{{ chilipili.likes.count }}</span></p>      
+    
  </div>
 
 
+{% comment %} <div class="user-div" data-url="{% url 'follow_user' followed_user.pk %}">
+    {% csrf_token %}
+    <button class="btn follow-button"><i class="fa fa-angle-double-up">Follow</i></button>
+<p>Followers:<span class="follow-count">{{ followed_user.follows.count }}</span></p>
+
+
+
+</div> {% endcomment %}
+
 {% endfor %}
-
-
-</div>
-
-
 
 {% endblock content %}

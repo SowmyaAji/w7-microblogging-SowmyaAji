@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from chilipili import views
+from api import views as api_views
 from django.conf.urls import url
 from django.contrib.auth.views import (
     PasswordChangeView,
@@ -27,10 +28,15 @@ from django.contrib.auth.views import (
     PasswordResetCompleteView,
 )
 
+
 urlpatterns = [
     path("", views.index, name="home"),
+    # chilipili urls
     path('admin/', admin.site.urls),
+    # api urls
+    path("api/", include("api.urls")),
     path('chilipilis/<pk>/like', views.like_chilipili, name='like_chilipili'),
+    # path('followed_user/<pk>/follow', views.follow_user, name="follow_user"),
     path('accounts/password/reset/', PasswordResetView.as_view(
         template_name='registration/password_reset_form.html'), name="password_reset"),
     path('accounts/password/change/', PasswordChangeView.as_view(
@@ -45,5 +51,4 @@ urlpatterns = [
          template_name='registration/password_reset_complete.html'),
          name="password_reset_complete"),
     path('accounts/', include('registration.backends.simple.urls')),
-
 ]
