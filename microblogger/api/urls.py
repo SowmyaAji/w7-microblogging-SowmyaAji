@@ -4,11 +4,11 @@ from api import views as api_views
 
 urlpatterns = [
     path("chilipilis/", api_views.ChilipiliListCreateView.as_view(),
-         name="api_book_list"),
+         name="api_chilipilis_list"),
     path(
         "chilipilis/<pk>/",
         api_views.ChilipiliRetrieveUpdateDestroyView.as_view(),
-        name="api_book",
+        name="api_chilipili",
     ),
     path("users/", api_views.UserListView.as_view(), name="api_user_list"),
     path("follows/", api_views.FollowListCreateView.as_view(),

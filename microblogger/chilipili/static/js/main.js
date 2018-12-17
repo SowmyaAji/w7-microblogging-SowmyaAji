@@ -30,8 +30,8 @@ $('.follow-button').on('click', function (event) {
             'csrfmiddlewaretoken': csrfToken
         }
     }).done(function (results) {
-        if (results.follows) {
-            $(parent_div).find('.follow-count').text(results.follows);
+        if (results.followers) {
+            $(parent_div).find('.follow-count').text(results.followers);
         }
     });
 })

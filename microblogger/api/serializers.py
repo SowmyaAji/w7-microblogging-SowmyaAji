@@ -8,7 +8,11 @@ class ChilipiliSerializer(serializers.ModelSerializer):
         slug_field="username", read_only=True)
     text = serializers.CharField(max_length=280)
 
-    created_at = serializers.DateTimeField()
+    # created_at = serializers.DateTimeField()
+
+    class Meta:
+        model = Chilipili
+        fields = ("author_user", "text", )
 
 
 class UserSerializer(serializers.ModelSerializer):

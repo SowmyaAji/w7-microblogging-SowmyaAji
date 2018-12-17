@@ -8,13 +8,16 @@ from django.contrib.auth.decorators import login_required
 # from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 # from django.db.models import Q
 # from django.contrib import messages
+# import json
+# from api.serializers import ChilipiliSerializer
 
 
 def index(request):
     chilipilis = Chilipili.objects.all().order_by("-created_at")
 
     return render(request, 'index.html', {'chilipilis': chilipilis,
-                                          })
+                                             })
+                                                    # "chilipilis_json": json.dumps(ChilipiliSerializer(chilipilis, many=True))})
 
 
 def like_chilipili(request, pk):
@@ -26,39 +29,28 @@ def like_chilipili(request, pk):
 
 
 def follow_user(request, pk):
-    breakpoint()
-    followed_user = get_object_or_404(
-        User.objects.exclude(request.user), pk=pk)
+    followed_user = get_object_or_404(User, pk=pk)
     if request.method == 'POST':
-        if not Follow.objects.filter(followed_user=followed_user, following_user=request.user):
-            Follow.objects.create(followed_user=followed_user,
-                                  following_user=request.user)
-        return JsonResponse({"followed_user.pk": followed_user.id, "followers": followed_user.follows.count})
+        # if not Follow.objects.filter(followed_user=followed_user, following_user=request.user):
+        Follow.objects.create(followed_user=followed_user,
+                              following_user=request.user)
+        return JsonResponse({"followed_user.pk": followed_user.id, "followers": followed_user.followers.count()})
 
 
-def sort_liked_chilipilis(request, chilipilis):
-    liked_chilipilis = []
-    if request.user.is_authenticated:
-        liked_chilipilis = request.user.liked_chilipilis.all()
-    chilipilis = chilipilis.order_by('-created_at')
-    return render(request,
-                  'index.html', {"chilipilis": chilipilis, "liked_chilipilis": liked_chilipilis})
+# def sort_liked_chilipilis(request, chilipilis):
+#     liked_chilipilis = []
+#     if request.user.is_authenticated:
+#         liked_chilipilis = request.user.liked_chilipilis.all()
+#     chilipilis = chilipilis.order_by('-created_at')
+#     return render(request,
+#                   'index.html', {"chilipilis": chilipilis, "liked_chilipilis": liked_chilipilis})
 
 
-@login_required
-def liked_index(request):
-    chilipilis = request.user.liked_chilipilis(all)
-    return render(request, 'My liked chilipilis', chilipilis)
+# @login_required
+# def liked_index(request):
+#     chilipilis = request.user.liked_chilipilis(all)
+#     return render(request, 'My liked chilipilis', chilipilis)
 
-
-def follow_user(request, pk):
-    followed_user = User.objects.exclude(request.user)
-    if request.method == 'POST':
-        if request.user != followed_user:
-            if not Follow.objects.filter(followed_user=followed_user, following_user=request.user):
-                Follow.objects.create(followed_user=followed_user,
-                                      following_user=request.user)
-            return JsonResponse({"followed_user.pk": followed_user.id, "followers": followed_user.follows.count})
 
 # @login_required
 # def new_chilipili(request):

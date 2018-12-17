@@ -36,7 +36,7 @@ urlpatterns = [
     # api urls
     path("api/", include("api.urls")),
     path('chilipilis/<pk>/like', views.like_chilipili, name='like_chilipili'),
-    # path('followed_user/<pk>/follow', views.follow_user, name="follow_user"),
+    path('followed_user/<pk>/follow', views.follow_user, name="follow_user"),
     path('accounts/password/reset/', PasswordResetView.as_view(
         template_name='registration/password_reset_form.html'), name="password_reset"),
     path('accounts/password/change/', PasswordChangeView.as_view(
