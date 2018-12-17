@@ -7,8 +7,24 @@ from rest_framework.views import APIView
 from rest_framework import generics
 
 
+# class ChilipiliListCreateView(APIView):
+#     def get(self, request):
+#         chilipilis = Chilipili.objects.filter(author_user=request.user)
+#         serializer = ChilipiliSerializer(Chilipili, many=True)
+#         return Response(serializer.data)
+
+#     def post(self, request):
+#         serializer = ChilipiliSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save(author_user=request.user)
+#             return Response(serializer.data, status=201)
+
+#         return Response(serializer.errors, status=400)
+
+
 class ChilipiliListCreateView(generics.ListCreateAPIView):
     serializer_class = ChilipiliSerializer
+    chilipilis = Chilipili.objects.all()
 
     def get_queryset(self):
         return self.request.user.chilipilis

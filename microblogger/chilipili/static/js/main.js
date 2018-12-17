@@ -22,8 +22,8 @@ function chilipiliHtml(chilipili) {
     `
 }
 
-$.get('/api/chilipilis/').then(function (chilipili) {
-    console.log('chilipili')
+$.get('/api/chilipilis/').then(function (chilipilis) {
+
     for (let chilipili of chilipilis) {
         $('#chilipili-list').append(chilipiliHtml(chilipili))
     }
